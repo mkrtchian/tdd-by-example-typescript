@@ -1,6 +1,6 @@
 # Node TypeScript template
 
-![Tests](https://github.com/mkrtchian/humble-object-pattern/workflows/Tests/badge.svg?branch=main)
+![Tests](https://github.com/mkrtchian/tdd-by-example-typescript/workflows/Tests/badge.svg?branch=main)
 
 Typescript template with basic code quality tooling configured:
 - Linting with [eslint](https://github.com/eslint/eslint) and [typescrip-eslint](https://github.com/typescript-eslint/typescript-eslint).

@@ -1,22 +1,19 @@
 {
-  "name": "humble-object-pattern",
+  "name": "tdd-by-example-typescript",
   "version": "1.0.0",
-  "description": "Examples of implementing the humble object pattern with tests",
-  "homepage": "https://github.com/mkrtchian/humble-object-pattern#readme",
+  "description": "Examples from the book 'Test-Driven Development by Example' by Kent Beck, implemented in TypeScript",
+  "homepage": "https://github.com/mkrtchian/tdd-by-example-typescript#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mkrtchian/humble-object-pattern.git"
+    "url": "git+https://github.com/mkrtchian/tdd-by-example-typescript.git"
   },
   "keywords": [
-    "humble-object-pattern",
-    "unit-testing",
-    "hexagonal-architecture",
-    "functional-architecture"
+    "tdd"
   ],
   "author": "Roman Mkrtchian",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mkrtchian/humble-object-pattern/issues"
+    "url": "https://github.com/mkrtchian/tdd-by-example-typescript/issues"
   },
   "type": "module",
   "engines": {
