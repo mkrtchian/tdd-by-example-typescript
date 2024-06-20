@@ -1,6 +1,8 @@
 import { fib } from ".";
 
-it("Fibonacci", () => {
-  expect(fib(0)).toBe(0);
-  expect(fib(1)).toBe(1);
+it.each([
+  [0, 0],
+  [1, 1],
+])("Fibonacci", (input, output) => {
+  expect(fib(input)).toBe(output);
 });
