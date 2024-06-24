@@ -1,5 +1,7 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
 // Mettre “amount” en privé
+// equals()
+// hashCode()
 
 import { Dollar } from "./money";
 
