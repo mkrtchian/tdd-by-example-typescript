@@ -12,3 +12,7 @@ it("multiplies money value with given value", () => {
   product = five.times(3);
   expect(product.amount).toBe(15);
 });
+
+it("equals to object with the same attributes", () => {
+  expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+})
