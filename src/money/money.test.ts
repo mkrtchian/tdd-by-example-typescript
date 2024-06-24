@@ -4,10 +4,16 @@
 
 import { Dollar } from "./money";
 
-it("multiplies money value with given value", () => {
+it("multiplies dollar value with given value", () => {
   const five = new Dollar(5);
   expect(five.times(2).equals(new Dollar(10))).toBe(true);
   expect(five.times(3).equals(new Dollar(15))).toBe(true);
+});
+
+it("multiplies franc value with given value", () => {
+  const five = new Franc(5);
+  expect(five.times(2).equals(new Franc(10))).toBe(true);
+  expect(five.times(3).equals(new Franc(15))).toBe(true);
 });
 
 it("equals to object with the same attributes", () => {
