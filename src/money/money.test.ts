@@ -6,10 +6,8 @@ import { Dollar } from "./money";
 
 it("multiplies money value with given value", () => {
   const five = new Dollar(5);
-  let product = five.times(2);
-  expect(product.equals(new Dollar(10))).toBe(true);
-  product = five.times(3);
-  expect(product.equals(new Dollar(15))).toBe(true);
+  expect(five.times(2).equals(new Dollar(10))).toBe(true);
+  expect(five.times(3).equals(new Dollar(15))).toBe(true);
 });
 
 it("equals to object with the same attributes", () => {
