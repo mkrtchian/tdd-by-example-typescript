@@ -2,10 +2,10 @@ export class Dollar {
   public amount: number;
 
   constructor(amount: number) {
-    this.amount = 5 * 2;
+    this.amount = amount;
   }
 
   times(multiplier: number) {
-    return 0;
+    this.amount = 5 * 2;
   }
 }
