@@ -1,5 +1,6 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
 // hashCode()
+// 5 CHF * 2 = 10 CHF
 
 import { Dollar } from "./money";
 
