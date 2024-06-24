@@ -9,7 +9,7 @@ it("multiplies money value with given value", () => {
   let product = five.times(2);
   expect(product.equals(new Dollar(10))).toBe(true);
   product = five.times(3);
-  expect(product.amount).toBe(15);
+  expect(product.equals(new Dollar(15))).toBe(true);
 });
 
 it("equals to object with the same attributes", () => {
