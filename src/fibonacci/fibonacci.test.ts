@@ -1,4 +1,4 @@
-import { fib } from ".";
+import { fib } from "./fibonacci";
 
 it.each([
   [0, 0],
