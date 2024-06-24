@@ -3,6 +3,8 @@
 // Mettre “amount” en privé
 // Quid des side-effects de Dollar ?
 
+import { Dollar } from "./money";
+
 it("multiplies money value with given value", () => {
   const five = new Dollar(5);
   five.times(2);
