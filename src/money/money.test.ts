@@ -1,6 +1,8 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
 // hashCode()
-// 5 CHF * 2 = 10 CHF
+// Duplication entre Dollar et Franc
+// equals à mettre en commun
+// times à mettre en commun
 
 import { Dollar, Franc } from "./money";
 
