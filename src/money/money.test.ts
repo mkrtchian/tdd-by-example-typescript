@@ -2,7 +2,7 @@
 // hashCode()
 // 5 CHF * 2 = 10 CHF
 
-import { Dollar } from "./money";
+import { Dollar, Franc } from "./money";
 
 it("multiplies dollar value with given value", () => {
   const five = new Dollar(5);
