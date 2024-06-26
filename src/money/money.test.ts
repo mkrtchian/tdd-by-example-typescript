@@ -5,7 +5,7 @@
 // times à mettre en commun
 // ajouter le concept de currency
 
-import { Dollar, Franc, Money } from "./money";
+import { Franc, Money } from "./money";
 
 it("multiplies dollar value with given value", () => {
   const five = Money.dollar(5);
@@ -20,9 +20,9 @@ it("multiplies franc value with given value", () => {
 });
 
 it("equals to object with the same attributes", () => {
-  expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
-  expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+  expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
+  expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
   expect(new Franc(5).equals(new Franc(5))).toBe(true);
   expect(new Franc(5).equals(new Franc(6))).toBe(false);
-  expect(new Franc(5).equals(new Dollar(5))).toBe(false);
+  expect(new Franc(5).equals(Money.dollar(5))).toBe(false);
 });
