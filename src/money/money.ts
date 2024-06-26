@@ -1,6 +1,12 @@
-class Money {
+export abstract class Money {
   constructor(protected amount: number) {
     this.amount = amount;
+  }
+
+  abstract times(multiplier: number): Money;
+
+  static dollar(amount: number): Money {
+    return new Dollar(amount);
   }
 
   equals(object: Money) {
