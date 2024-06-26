@@ -8,9 +8,9 @@
 import { Dollar, Franc } from "./money";
 
 it("multiplies dollar value with given value", () => {
-  const five = new Dollar(5);
-  expect(five.times(2).equals(new Dollar(10))).toBe(true);
-  expect(five.times(3).equals(new Dollar(15))).toBe(true);
+  const five = Money.dollar(5);
+  expect(five.times(2).equals(Money.dollar(10))).toBe(true);
+  expect(five.times(3).equals(Money.dollar(15))).toBe(true);
 });
 
 it("multiplies franc value with given value", () => {
