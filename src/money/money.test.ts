@@ -5,7 +5,7 @@
 // times à mettre en commun
 // ajouter le concept de currency
 
-import { Franc, Money } from "./money";
+import { Money } from "./money";
 
 it("multiplies dollar value with given value", () => {
   const five = Money.dollar(5);
