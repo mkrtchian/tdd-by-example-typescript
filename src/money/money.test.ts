@@ -3,7 +3,6 @@
 // Duplication entre Dollar et Franc
 // equals à mettre en commun
 // times à mettre en commun
-// comparer les francs et les dollars
 
 import { Dollar, Franc } from "./money";
 
