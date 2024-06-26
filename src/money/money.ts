@@ -9,7 +9,7 @@ export class Dollar extends Money {
     return new Dollar(this.amount * multiplier);
   }
 
-  equals(object: Dollar) {
+  equals(object: Money) {
     return this.amount === object.amount;
   }
 }
