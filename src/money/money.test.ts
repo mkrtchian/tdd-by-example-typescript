@@ -4,6 +4,7 @@
 // equals à mettre en commun
 // times à mettre en commun
 // ajouter le concept de currency
+// Supprimer le test de multiplication de Franc
 
 import { Money } from "./money";
 
