@@ -3,6 +3,7 @@
 // Duplication entre Dollar et Franc
 // equals à mettre en commun
 // times à mettre en commun
+// comparer les francs et les dollars
 
 import { Dollar, Franc } from "./money";
 
@@ -23,4 +24,5 @@ it("equals to object with the same attributes", () => {
   expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
   expect(new Franc(5).equals(new Franc(5))).toBe(true);
   expect(new Franc(5).equals(new Franc(6))).toBe(false);
+  expect(new Franc(5).equals(new Dollar(5))).toBe(false);
 });
