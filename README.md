@@ -1,8 +1,9 @@
 # Node TypeScript template
 
-![Tests](https://github.com/mkrtchian/tdd-by-example-typescript/workflows/Tests/badge.svg?branch=main)
+![Tests](https://github.com/mkrtchian/tdd-by-example-typescript/actions/workflows/tests.yml/badge.svg?branch=main)
 
 Typescript template with basic code quality tooling configured:
+
 - Linting with [eslint](https://github.com/eslint/eslint) and [typescrip-eslint](https://github.com/typescript-eslint/typescript-eslint).
 - Formatting with [prettier](https://github.com/prettier/prettier).
 - Testing with [jest](https://github.com/facebook/jest).
