@@ -30,7 +30,7 @@ export abstract class Money {
 export class Dollar extends Money {
   constructor(amount: number, currency: string) {
     super(amount);
-    this._currency = "USD";
+    this._currency = currency;
   }
 
   times(multiplier: number): Money {
