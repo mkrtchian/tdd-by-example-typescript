@@ -26,10 +26,18 @@ export class Dollar extends Money {
   times(multiplier: number): Money {
     return new Dollar(this.amount * multiplier);
   }
+
+  currency() {
+    return "USD";
+  }
 }
 
 export class Franc extends Money {
   times(multiplier: number): Money {
     return new Franc(this.amount * multiplier);
+  }
+
+  currency() {
+    return "CHF";
   }
 }
