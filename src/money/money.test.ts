@@ -1,7 +1,6 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
 // hashCode()
 // Duplication entre Dollar et Franc
-// equals à mettre en commun
 // times à mettre en commun
 // ajouter le concept de currency
 // Supprimer le test de multiplication de Franc
@@ -26,4 +25,9 @@ it("equals to object with the same attributes", () => {
   expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
   expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
   expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
+});
+
+it("returns the currency of the money", () => {
+  expect(Money.dollar(1).currency()).toBe("USD");
+  expect(Money.franc(1).currency()).toBe("CHF");
 });
