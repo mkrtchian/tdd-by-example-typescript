@@ -9,7 +9,7 @@ export abstract class Money {
   abstract times(multiplier: number): Money;
 
   static dollar(amount: number): Money {
-    return new Dollar(amount);
+    return new Dollar(amount, "USD");
   }
 
   static franc(amount: number): Money {
