@@ -2,7 +2,6 @@
 // hashCode()
 // Duplication entre Dollar et Franc
 // times à mettre en commun
-// ajouter le concept de currency
 // Supprimer le test de multiplication de Franc
 
 import { Money } from "./money";
