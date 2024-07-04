@@ -28,7 +28,7 @@ export abstract class Money {
 }
 
 export class Dollar extends Money {
-  constructor(amount: number) {
+  constructor(amount: number, currency: string) {
     super(amount);
     this._currency = "USD";
   }
