@@ -1,11 +1,12 @@
 export abstract class Money {
+  protected _currency: string;
+
   constructor(protected amount: number) {
     this.amount = amount;
+    this._currency = "";
   }
 
   abstract times(multiplier: number): Money;
-
-  abstract currency(): string;
 
   static dollar(amount: number): Money {
     return new Dollar(amount);
@@ -20,11 +21,13 @@ export abstract class Money {
       this.amount === object.amount && this.constructor === object.constructor
     );
   }
+
+  currency() {
+    return this._currency;
+  }
 }
 
 export class Dollar extends Money {
-  private _currency: string;
-
   constructor(amount: number) {
     super(amount);
     this._currency = "USD";
@@ -33,15 +36,9 @@ export class Dollar extends Money {
   times(multiplier: number): Money {
     return new Dollar(this.amount * multiplier);
   }
-
-  currency() {
-    return this._currency;
-  }
 }
 
 export class Franc extends Money {
-  private _currency: string;
-
   constructor(amount: number) {
     super(amount);
     this._currency = "CHF";
@@ -49,9 +46,5 @@ export class Franc extends Money {
 
   times(multiplier: number): Money {
     return new Franc(this.amount * multiplier);
-  }
-
-  currency() {
-    return this._currency;
   }
 }
