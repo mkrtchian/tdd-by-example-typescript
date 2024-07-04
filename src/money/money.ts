@@ -5,6 +5,8 @@ export abstract class Money {
 
   abstract times(multiplier: number): Money;
 
+  abstract currency(): string;
+
   static dollar(amount: number): Money {
     return new Dollar(amount);
   }
