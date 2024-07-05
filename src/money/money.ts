@@ -5,7 +5,7 @@ export class Money {
   ) {}
 
   times(multiplier: number) {
-    return new Money(0, "");
+    return new Money(this.amount * multiplier, this._currency);
   }
 
   static dollar(amount: number): Money {
@@ -27,14 +27,6 @@ export class Money {
   }
 }
 
-export class Dollar extends Money {
-  times(multiplier: number): Money {
-    return new Money(this.amount * multiplier, this._currency);
-  }
-}
+export class Dollar extends Money {}
 
-export class Franc extends Money {
-  times(multiplier: number): Money {
-    return new Money(this.amount * multiplier, this._currency);
-  }
-}
+export class Franc extends Money {}
