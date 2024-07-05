@@ -30,3 +30,7 @@ it("returns the currency of the money", () => {
   expect(Money.dollar(1).currency()).toBe("USD");
   expect(Money.franc(1).currency()).toBe("CHF");
 });
+
+test("Money and dollar with same amount are equal", () => {
+  expect(new Money(10, "USD").equals(new Dollar(10, "USD"))).toBe(true);
+});
