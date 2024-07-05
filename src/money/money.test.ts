@@ -21,6 +21,9 @@ it("returns the currency of the money", () => {
 });
 
 it('adds two money values', () => {
+  const five = Money.dollar(5);
+  const sum = five.plus(five);
+  const bank= new Bank();
   const reduced = bank.reduce(sum, "USD");
   expect(reduced.equals(Money.dollar(10)).toBe(true));
 })
