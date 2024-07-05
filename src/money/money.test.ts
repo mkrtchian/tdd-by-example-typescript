@@ -4,7 +4,7 @@
 // times à mettre en commun
 // Supprimer le test de multiplication de Franc
 
-import { Money } from "./money";
+import { Dollar, Money } from "./money";
 
 it("multiplies dollar value with given value", () => {
   const five = Money.dollar(5);
