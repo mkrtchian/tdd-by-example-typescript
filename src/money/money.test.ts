@@ -1,7 +1,5 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
 // hashCode()
-// Duplication entre Dollar et Franc
-// Supprimer le test de multiplication de Franc
 
 import { Money } from "./money";
 

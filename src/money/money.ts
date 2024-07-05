@@ -26,7 +26,3 @@ export class Money {
     return this._currency;
   }
 }
-
-export class Dollar extends Money {}
-
-export class Franc extends Money {}
