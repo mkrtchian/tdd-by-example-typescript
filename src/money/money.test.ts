@@ -28,3 +28,10 @@ it('adds two money values', () => {
   const reduced = bank.reduce(sum, "USD");
   expect(reduced.equals(Money.dollar(10))).toBe(true);
 })
+
+it('returns a sum when using plus', () => {
+  const five = Money.dollar(5);
+  const sum = five.plus(five);
+  expect(sum.augend.equals(five)).toBe(true);
+  expect(sum.addend.equals(five)).toBe(true);
+});
