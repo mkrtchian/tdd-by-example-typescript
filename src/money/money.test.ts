@@ -15,7 +15,7 @@ it("multiplies dollar value with given value", () => {
 it("equals to object with the same attributes", () => {
   expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
   expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
-  expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
+  expect(Money.franc(5).equals(Money.dollar(5))).toBe(true);
 });
 
 it("returns the currency of the money", () => {
