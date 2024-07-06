@@ -1,6 +1,7 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
 // $5 + $5 = $10
 // Retourner Money à partir de $5 + $5
+// Bank.reduce(Money)
 
 import { Bank, Money, Sum } from "./money";
 
@@ -21,15 +22,15 @@ it("returns the currency of the money", () => {
   expect(Money.franc(1).currency()).toBe("CHF");
 });
 
-it('adds two money values', () => {
+it("adds two money values", () => {
   const five = Money.dollar(5);
   const sum = five.plus(five);
-  const bank= new Bank();
+  const bank = new Bank();
   const reduced = bank.reduce(sum, "USD");
   expect(reduced.equals(Money.dollar(10))).toBe(true);
-})
+});
 
-it('returns a sum when using plus', () => {
+it("returns a sum when using plus", () => {
   const five = Money.dollar(5);
   const sum = five.plus(five);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -37,7 +38,7 @@ it('returns a sum when using plus', () => {
   expect((sum as Sum).addend.equals(five)).toBe(true);
 });
 
-it('reduces the sum of dollars to a dollar', () => {
+it("reduces the sum of dollars to a dollar", () => {
   const sum = new Sum(Money.dollar(3), Money.dollar(4));
   const bank = new Bank();
   const result = bank.reduce(sum, "USD");
