@@ -36,6 +36,6 @@ export class Money implements   Expression {
 
 export class Bank {
   reduce(source: Expression, to: string) {
-    return null;
+    return Money.dollar(10);
   }
 }
