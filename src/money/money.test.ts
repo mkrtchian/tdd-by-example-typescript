@@ -44,3 +44,9 @@ it("reduces the sum of dollars to a dollar", () => {
   const result = bank.reduce(sum, "USD");
   expect(result.equals(Money.dollar(7))).toBe(true);
 });
+
+it("reduces a money to a money", () => {
+  const bank = new Bank();
+  const result = bank.reduce(Money.dollar(1), "USD");
+  expect(result.equals(Money.dollar(1))).toBe(true);
+});
