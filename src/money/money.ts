@@ -1,5 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Expression {}
+interface Expression {
+  reduce(to: string): Expression;
+}
 
 export class Money implements Expression {
   constructor(
@@ -44,9 +45,8 @@ export class Sum implements Expression {
     public addend: Money,
   ) {}
 
-  reduce(source: Expression, to: string) {
-    const amount =
-      (source as Sum).augend.amount + (source as Sum).addend.amount;
+  reduce(to: string) {
+    const amount = this.augend.amount + this.addend.amount;
     return new Money(amount, to);
   }
 }
@@ -56,6 +56,6 @@ export class Bank {
     if (source instanceof Money) {
       return source;
     }
-    return (source as Sum).reduce(source, to);
+    return (source as Sum).reduce(to);
   }
 }
