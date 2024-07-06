@@ -15,6 +15,10 @@ export class Money implements Expression {
     return new Sum(this, addend);
   }
 
+  reduce(to: string) {
+    return this;
+  }
+
   static dollar(amount: number): Money {
     return new Money(amount, "USD");
   }
