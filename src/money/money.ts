@@ -1,4 +1,7 @@
-export class Money {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Expression {}
+
+export class Money implements   Expression {
   constructor(
     protected amount: number,
     protected _currency: string,
@@ -8,7 +11,7 @@ export class Money {
     return new Money(this.amount * multiplier, this._currency);
   }
 
-  plus(addend: Money) {
+  plus(addend: Money): Expression {
     return new Money(this.amount + addend.amount, this._currency);
   }
 
@@ -28,5 +31,11 @@ export class Money {
 
   currency() {
     return this._currency;
+  }
+}
+
+export class Bank {
+  reduce(source: Expression, to: string) {
+    return null;
   }
 }
