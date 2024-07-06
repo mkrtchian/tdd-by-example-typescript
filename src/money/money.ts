@@ -55,6 +55,6 @@ export class Bank {
     return (source as Sum).reduce(to);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   addRate(from: string, to: string, rate: number) {}
 }
