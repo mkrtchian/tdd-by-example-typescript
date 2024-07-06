@@ -36,3 +36,10 @@ it('returns a sum when using plus', () => {
   expect((sum as Sum).augend.equals(five)).toBe(true);
   expect((sum as Sum).addend.equals(five)).toBe(true);
 });
+
+it('reduces the sum of dollars to a dollar', () => {
+  const sum = new Sum(Money.dollar(3), Money.dollar(4));
+  const bank = new Bank();
+  const result = bank.reduce(sum, "USD");
+  expect(result.equals(Money.dollar(7))).toBe(true);
+});
