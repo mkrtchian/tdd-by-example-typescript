@@ -51,3 +51,10 @@ it("reduces a money to a money", () => {
   const result = bank.reduce(Money.dollar(1), "USD");
   expect(result.equals(Money.dollar(1))).toBe(true);
 });
+
+it("reduces money with different currencies", () => {
+  const bank = new Bank();
+  bank.addRate("CHF", "USD", 2);
+  const result = bank.reduce(Money.franc(2), "USD");
+  expect(result.equals(Money.dollar(1))).toBe(true);
+});
