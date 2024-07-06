@@ -2,7 +2,7 @@
 // $5 + $5 = $10
 // Retourner Money à partir de $5 + $5
 
-import { Bank, Money } from "./money";
+import { Bank, Money, Sum } from "./money";
 
 it("multiplies dollar value with given value", () => {
   const five = Money.dollar(5);
@@ -32,6 +32,7 @@ it('adds two money values', () => {
 it('returns a sum when using plus', () => {
   const five = Money.dollar(5);
   const sum = five.plus(five);
-  expect(sum.augend.equals(five)).toBe(true);
-  expect(sum.addend.equals(five)).toBe(true);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  expect((sum as Sum).augend.equals(five)).toBe(true);
+  expect((sum as Sum).addend.equals(five)).toBe(true);
 });

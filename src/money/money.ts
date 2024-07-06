@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Expression {}
+interface Expression {
+}
 
 export class Money implements   Expression {
   constructor(
@@ -12,7 +13,7 @@ export class Money implements   Expression {
   }
 
   plus(addend: Money): Expression {
-    return new Money(this.amount + addend.amount, this._currency);
+    return new Sum(this, addend);
   }
 
   static dollar(amount: number): Money {
@@ -32,6 +33,10 @@ export class Money implements   Expression {
   currency() {
     return this._currency;
   }
+}
+
+export class Sum implements Expression {
+  constructor(public augend: Money, public addend: Money) {}
 }
 
 export class Bank {
