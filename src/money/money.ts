@@ -49,6 +49,9 @@ export class Sum implements Expression {
 
 export class Bank {
   reduce(source: Expression, to: string) {
+    if (source instanceof Money) {
+      return source;
+    }
     return (source as Sum).reduce(source, to);
   }
 }
