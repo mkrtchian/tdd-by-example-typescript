@@ -39,13 +39,16 @@ export class Sum implements Expression {
     public augend: Money,
     public addend: Money,
   ) {}
+
+  reduce(source: Expression, to: string) {
+    const amount =
+      (source as Sum).augend.amount + (source as Sum).addend.amount;
+    return new Money(amount, to);
+  }
 }
 
 export class Bank {
   reduce(source: Expression, to: string) {
-    return new Money(
-      (source as Sum).augend.amount + (source as Sum).addend.amount,
-      to,
-    );
+    return (source as Sum).reduce(source, to);
   }
 }
