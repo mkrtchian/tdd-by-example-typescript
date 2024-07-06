@@ -6,6 +6,11 @@ const config: Config = {
     "^.+\\.ts$": "ts-jest",
   },
   setupFilesAfterEnv: ["jest-extended/all"],
+  globals: {
+    "ts-jest": {
+      diagnostics: false,
+    },
+  },
 };
 
 export default config;
