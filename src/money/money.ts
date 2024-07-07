@@ -51,10 +51,8 @@ export class Sum implements Expression {
     return new Money(amount, to);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  plus(addend: Expression) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return null as any as Expression;
+  plus(addend: Expression): Expression {
+    return new Sum(this, addend);
   }
 }
 
