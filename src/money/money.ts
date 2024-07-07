@@ -17,7 +17,7 @@ export class Money implements Expression {
   }
 
   reduce(bank: Bank, to: string) {
-    const rate = this.currency() === "CHF" && to === "USD" ? 2 : 1;
+    const rate = bank.rate(this._currency, to);
     return new Money(this.amount / rate, to);
   }
 
@@ -53,6 +53,10 @@ export class Sum implements Expression {
 export class Bank {
   reduce(source: Expression, to: string) {
     return (source as Sum).reduce(this, to);
+  }
+
+  rate(from: string, to: string) {
+    return from === "CHF" && to === "USD" ? 2 : 1;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
