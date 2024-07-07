@@ -1,5 +1,6 @@
 interface Expression {
-  reduce(bank: Bank, to: string): Expression;
+  reduce(bank: Bank, to: string): Money;
+  plus(addend: Expression): Expression;
 }
 
 export class Money implements Expression {
@@ -12,7 +13,7 @@ export class Money implements Expression {
     return new Money(this.amount * multiplier, this._currency);
   }
 
-  plus(addend: Money): Sum {
+  plus(addend: Expression): Expression {
     return new Sum(this, addend);
   }
 
@@ -40,14 +41,20 @@ export class Money implements Expression {
 
 export class Sum implements Expression {
   constructor(
-    public augend: Money,
-    public addend: Money,
+    public augend: Expression,
+    public addend: Expression,
   ) {}
 
   reduce(bank: Bank, to: string) {
     const amount =
       this.augend.reduce(bank, to).amount + this.addend.reduce(bank, to).amount;
     return new Money(amount, to);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  plus(addend: Expression) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return null as any as Expression;
   }
 }
 

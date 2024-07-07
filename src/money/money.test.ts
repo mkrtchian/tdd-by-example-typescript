@@ -30,9 +30,9 @@ it("adds two money values", () => {
 
 it("returns a sum when using plus", () => {
   const five = Money.dollar(5);
-  const sum = five.plus(five);
-  expect(sum.augend.equals(five)).toBe(true);
-  expect(sum.addend.equals(five)).toBe(true);
+  const sum = five.plus(five) as Sum;
+  expect((sum.augend as Money).equals(five)).toBe(true);
+  expect((sum.addend as Money).equals(five)).toBe(true);
 });
 
 it("reduces the sum of dollars to a dollar", () => {
