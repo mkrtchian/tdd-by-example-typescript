@@ -34,9 +34,8 @@ it("adds two money values", () => {
 it("returns a sum when using plus", () => {
   const five = Money.dollar(5);
   const sum = five.plus(five);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  expect((sum as Sum).augend.equals(five)).toBe(true);
-  expect((sum as Sum).addend.equals(five)).toBe(true);
+  expect(sum.augend.equals(five)).toBe(true);
+  expect(sum.addend.equals(five)).toBe(true);
 });
 
 it("reduces the sum of dollars to a dollar", () => {
