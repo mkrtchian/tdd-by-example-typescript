@@ -50,7 +50,28 @@ export class Sum implements Expression {
   }
 }
 
+class Pair {
+  constructor(
+    public from: string,
+    public to: string,
+  ) {}
+
+  equals(object: Pair) {
+    return this.from === object.from && this.to === object.to;
+  }
+
+  hashCode() {
+    return 0;
+  }
+}
+
 export class Bank {
+  private _rates: Map<Pair, number>;
+
+  constructor() {
+    this._rates = new Map();
+  }
+
   reduce(source: Expression, to: string) {
     return (source as Sum).reduce(this, to);
   }
@@ -59,6 +80,7 @@ export class Bank {
     return from === "CHF" && to === "USD" ? 2 : 1;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  addRate(from: string, to: string, rate: number) {}
+  addRate(from: string, to: string, rate: number) {
+    this._rates.set(new Pair(from, to), rate);
+  }
 }
