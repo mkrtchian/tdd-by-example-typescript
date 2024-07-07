@@ -1,7 +1,3 @@
-// Retourner Money à partir de $5 + $5
-// Implémentation de Sum.plus
-// Mettre times dans Expression
-
 import { Bank, Money, RateNotDefinedError, Sum } from "./money";
 
 it("multiplies dollar value with given value", () => {
