@@ -1,5 +1,5 @@
 interface Expression {
-  reduce(to: string): Expression;
+  reduce(bank: Bank, to: string): Expression;
 }
 
 export class Money implements Expression {
@@ -16,7 +16,7 @@ export class Money implements Expression {
     return new Sum(this, addend);
   }
 
-  reduce(to: string) {
+  reduce(bank: Bank, to: string) {
     const rate = this.currency() === "CHF" && to === "USD" ? 2 : 1;
     return new Money(this.amount / rate, to);
   }
@@ -44,7 +44,7 @@ export class Sum implements Expression {
     public addend: Money,
   ) {}
 
-  reduce(to: string) {
+  reduce(bank: Bank, to: string) {
     const amount = this.augend.amount + this.addend.amount;
     return new Money(amount, to);
   }
@@ -52,7 +52,7 @@ export class Sum implements Expression {
 
 export class Bank {
   reduce(source: Expression, to: string) {
-    return (source as Sum).reduce(to);
+    return (source as Sum).reduce(this, to);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
