@@ -1,8 +1,6 @@
-interface Expression {
-  reduce(bank: Bank, to: string): Money;
-  plus(addend: Expression): Expression;
-  times(multiplier: number): Expression;
-}
+import { Bank } from "./bank";
+import { Expression } from "./expression";
+import { Sum } from "./sum";
 
 export class Money implements Expression {
   constructor(
@@ -37,80 +35,5 @@ export class Money implements Expression {
 
   currency() {
     return this._currency;
-  }
-}
-
-export class Sum implements Expression {
-  constructor(
-    public augend: Expression,
-    public addend: Expression,
-  ) {}
-
-  reduce(bank: Bank, to: string) {
-    const amount =
-      this.augend.reduce(bank, to).amount + this.addend.reduce(bank, to).amount;
-    return new Money(amount, to);
-  }
-
-  plus(addend: Expression): Expression {
-    return new Sum(this, addend);
-  }
-
-  times(multiplier: number) {
-    return new Sum(
-      this.augend.times(multiplier),
-      this.addend.times(multiplier),
-    );
-  }
-}
-
-class Pair {
-  constructor(
-    public from: string,
-    public to: string,
-  ) {}
-
-  equals(object: Pair) {
-    return this.from === object.from && this.to === object.to;
-  }
-
-  hashCode() {
-    return 0;
-  }
-}
-
-export class RateNotDefinedError extends Error {
-  constructor(
-    public from: string,
-    public to: string,
-  ) {
-    super("Rate not defined");
-  }
-}
-
-export class Bank {
-  private _rates: Map<number, number>;
-
-  constructor() {
-    this._rates = new Map();
-  }
-
-  reduce(source: Expression, to: string) {
-    return source.reduce(this, to);
-  }
-
-  rate(from: string, to: string) {
-    if (from === to) {
-      return 1;
-    }
-    const rate = this._rates.get(new Pair(from, to).hashCode());
-    if (!rate) {
-      throw new RateNotDefinedError(from, to);
-    }
-    return rate;
-  }
-
-  addRate(from: string, to: string, rate: number) {
-    this._rates.set(new Pair(from, to).hashCode(), rate);
   }
 }
