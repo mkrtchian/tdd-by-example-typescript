@@ -1,8 +1,5 @@
 // $5 + 10CHF = $10 si le taux est de 2:1
-// $5 + $5 = $10
 // Retourner Money à partir de $5 + $5
-// Reduce avec une conversion
-// Reduce(Bank, string)
 
 import { Bank, Money, Sum } from "./money";
 
