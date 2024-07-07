@@ -57,3 +57,8 @@ it("reduces money with different currencies", () => {
   const result = bank.reduce(Money.franc(2), "USD");
   expect(result.equals(Money.dollar(1))).toBe(true);
 });
+
+it("uses a rate of 1 when the currencies are the same", () => {
+  const bank = new Bank();
+  expect(bank.rate("USD", "USD")).toBe(1);
+});

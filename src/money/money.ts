@@ -66,7 +66,7 @@ class Pair {
 }
 
 export class Bank {
-  private _rates: Map<Pair, number>;
+  private _rates: Map<number, number>;
 
   constructor() {
     this._rates = new Map();
@@ -77,10 +77,12 @@ export class Bank {
   }
 
   rate(from: string, to: string) {
-    return from === "CHF" && to === "USD" ? 2 : 1;
+    if (from === to) return 1;
+
+    return this._rates.get(new Pair(from, to).hashCode());
   }
 
   addRate(from: string, to: string, rate: number) {
-    this._rates.set(new Pair(from, to), rate);
+    this._rates.set(new Pair(from, to).hashCode(), rate);
   }
 }
