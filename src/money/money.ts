@@ -73,6 +73,15 @@ class Pair {
   }
 }
 
+export class RateNotDefinedError extends Error {
+  constructor(
+    public from: string,
+    public to: string,
+  ) {
+    super("Rate not defined");
+  }
+}
+
 export class Bank {
   private _rates: Map<number, number>;
 
@@ -85,9 +94,14 @@ export class Bank {
   }
 
   rate(from: string, to: string) {
-    if (from === to) return 1;
-
-    return this._rates.get(new Pair(from, to).hashCode());
+    if (from === to) {
+      return 1;
+    }
+    const rate = this._rates.get(new Pair(from, to).hashCode());
+    if (!rate) {
+      throw new RateNotDefinedError(from, to);
+    }
+    return rate;
   }
 
   addRate(from: string, to: string, rate: number) {

@@ -1,7 +1,8 @@
-// $5 + 10CHF = $10 si le taux est de 2:1
 // Retourner Money à partir de $5 + $5
+// Implémentation de Sum.plus
+// Mettre times dans Expression
 
-import { Bank, Money, Sum } from "./money";
+import { Bank, Money, RateNotDefinedError, Sum } from "./money";
 
 it("multiplies dollar value with given value", () => {
   const five = Money.dollar(5);
@@ -58,6 +59,16 @@ it("reduces money with different currencies", () => {
 it("uses a rate of 1 when the currencies are the same", () => {
   const bank = new Bank();
   expect(bank.rate("USD", "USD")).toBe(1);
+});
+
+it("throws an error when rate is not defined", () => {
+  expect.assertions(1);
+  const bank = new Bank();
+  try {
+    bank.rate("CHF", "USD");
+  } catch (error) {
+    expect(error).toBeInstanceOf(RateNotDefinedError);
+  }
 });
 
 it("adds two expressions with mixed currencies", () => {
