@@ -1,14 +1,16 @@
 /*
 $5 + 10CHF = $10 si le taux est de 2:1
 hashCode()
-Duplication entre Dollar et Franc
-  equals à mettre en commun
-  times à mettre en commun
+Duplication entre Dollar et Franc:
+  - equals à mettre en commun
+  - times à mettre en commun
 */
 
-export class Dollar {
-  constructor(private _amount: number) {}
+export class Money {
+  constructor(protected _amount: number) {}
+}
 
+export class Dollar extends Money {
   times(multiplier: number): Dollar {
     return new Dollar(this._amount * multiplier);
   }
