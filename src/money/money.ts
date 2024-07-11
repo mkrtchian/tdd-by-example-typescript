@@ -7,7 +7,7 @@ Duplication entre Dollar et Franc:
 */
 
 export class Money {
-  constructor(protected _amount: number) {}
+  constructor(protected readonly _amount: number) {}
 }
 
 export class Dollar extends Money {
@@ -20,9 +20,7 @@ export class Dollar extends Money {
   }
 }
 
-export class Franc {
-  constructor(private _amount: number) {}
-
+export class Franc extends Money {
   times(multiplier: number): Franc {
     return new Franc(this._amount * multiplier);
   }
