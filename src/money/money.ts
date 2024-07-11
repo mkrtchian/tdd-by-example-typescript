@@ -8,24 +8,20 @@ Duplication entre Dollar et Franc:
 
 export class Money {
   constructor(protected readonly _amount: number) {}
+
+  equals(other: Money): boolean {
+    return this._amount === other._amount;
+  }
 }
 
 export class Dollar extends Money {
   times(multiplier: number): Dollar {
     return new Dollar(this._amount * multiplier);
   }
-
-  equals(dollar: Dollar): boolean {
-    return this._amount === dollar._amount;
-  }
 }
 
 export class Franc extends Money {
   times(multiplier: number): Franc {
     return new Franc(this._amount * multiplier);
-  }
-
-  equals(franc: Franc): boolean {
-    return this._amount === franc._amount;
   }
 }
