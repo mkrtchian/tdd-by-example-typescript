@@ -20,4 +20,9 @@ describe("For CHF", () => {
     expect(Money.franc(5).times(2).equals(Money.franc(10))).toBe(true);
     expect(Money.franc(5).times(3).equals(Money.franc(15))).toBe(true);
   });
+
+  it("should return the currency", () => {
+    expect(Money.franc(1).currency()).toBe("CHF");
+    expect(Money.dollar(1).currency()).toBe("USD");
+  });
 });
