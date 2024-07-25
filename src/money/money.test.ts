@@ -4,6 +4,9 @@ describe("For dollars", () => {
   it("should ensure equality", () => {
     expect(new Dollar(1).equals(new Dollar(1))).toBe(true);
     expect(new Dollar(1).equals(new Dollar(2))).toBe(false);
+    expect(new Franc(1).equals(new Franc(1))).toBe(true);
+    expect(new Franc(1).equals(new Franc(2))).toBe(false);
+    expect(new Franc(1).equals(new Dollar(1))).toBe(false);
   });
 
   it("should multiply the value", () => {
