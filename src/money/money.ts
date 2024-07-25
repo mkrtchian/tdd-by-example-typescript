@@ -1,6 +1,6 @@
 /*
 $5 + 10CHF = $10 si le taux est de 2:1
-$5 + $5 = $10
+--> $5 + $5 = $10
 Retourner Money à partir de $5 + $5
 */
 
@@ -12,6 +12,10 @@ export class Money implements Expression {
     protected _amount: number,
     protected _currency: string,
   ) {}
+
+  get amount() {
+    return this._amount;
+  }
 
   times(multiplier: number): Money {
     return new Money(this._amount * multiplier, this._currency);
@@ -43,7 +47,8 @@ export class Money implements Expression {
 export class Bank {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reduce(source: Expression, currency: string) {
-    return Money.dollar(10);
+    const sum = source as Sum;
+    return new Money(sum.addend.amount + sum.augend.amount, "USD");
   }
 }
 
