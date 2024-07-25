@@ -1,4 +1,4 @@
-import { Money } from "./money";
+import { Money, Bank } from "./money";
 
 describe("For dollars", () => {
   it("should ensure equality", () => {
@@ -25,7 +25,16 @@ it("Money with USD should be equal to dollar", () => {
 });
 
 it("should add two money", () => {
-  expect(Money.dollar(5).plus(Money.dollar(5)).equals(Money.dollar(10))).toBe(
-    true,
-  );
+  const bank = new Bank();
+  const sum = Money.dollar(5).plus(Money.dollar(5));
+  const reduced = bank.reduce(sum, "USD");
+  expect(reduced.equals(Money.dollar(10))).toBe(true);
+});
+
+it("plus should return a object with addend and augend", () => {
+  const money1 = Money.dollar(3);
+  const money2 = Money.dollar(2);
+  const sum = money1.plus(money2);
+  expect(sum.addend.equals(money2)).toBe(true);
+  expect(sum.augend.equals(money1)).toBe(true);
 });

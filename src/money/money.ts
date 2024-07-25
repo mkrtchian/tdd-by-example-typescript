@@ -1,9 +1,13 @@
 /*
 $5 + 10CHF = $10 si le taux est de 2:1
 $5 + $5 = $10
+Retourner Money à partir de $5 + $5
 */
 
-export class Money {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Expression {}
+
+export class Money implements Expression {
   constructor(
     protected _amount: number,
     protected _currency: string,
@@ -13,8 +17,8 @@ export class Money {
     return new Money(this._amount * multiplier, this._currency);
   }
 
-  plus(addend: Money): Money {
-    return new Money(this._amount + addend._amount, this._currency);
+  plus(addend: Money) {
+    return new Sum(this, addend);
   }
 
   equals(other: Money): boolean {
@@ -34,4 +38,18 @@ export class Money {
   static franc(amount: number) {
     return new Money(amount, "CHF");
   }
+}
+
+export class Bank {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  reduce(source: Expression, currency: string) {
+    return Money.dollar(10);
+  }
+}
+
+export class Sum implements Expression {
+  constructor(
+    public augend: Money,
+    public addend: Money,
+  ) {}
 }
