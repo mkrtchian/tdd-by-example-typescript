@@ -8,7 +8,14 @@ Supprimer le test de multiplication du Franc
 */
 
 export abstract class Money {
-  constructor(protected readonly _amount: number) {}
+  protected _currency: string;
+
+  constructor(
+    protected _amount: number,
+    currency: string,
+  ) {
+    this._currency = currency;
+  }
 
   abstract times(multiplier: number): Money;
 
@@ -19,24 +26,17 @@ export abstract class Money {
   }
 
   static dollar(amount: number) {
-    return new Dollar(amount);
+    return new Dollar(amount, "USD");
   }
 
   static franc(amount: number) {
-    return new Franc(amount);
+    return new Franc(amount, "CHF");
   }
 }
 
 class Dollar extends Money {
-  private _currency: string;
-
-  constructor(amount: number) {
-    super(amount);
-    this._currency = "USD";
-  }
-
   times(multiplier: number): Money {
-    return new Dollar(this._amount * multiplier);
+    return new Dollar(this._amount * multiplier, this._currency);
   }
 
   currency() {
@@ -45,15 +45,8 @@ class Dollar extends Money {
 }
 
 class Franc extends Money {
-  private _currency: string;
-
-  constructor(amount: number) {
-    super(amount);
-    this._currency = "CHF";
-  }
-
   times(multiplier: number): Money {
-    return new Franc(this._amount * multiplier);
+    return new Franc(this._amount * multiplier, this._currency);
   }
 
   currency() {
