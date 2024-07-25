@@ -2,20 +2,15 @@
 $5 + 10CHF = $10 si le taux est de 2:1
 hashCode()
 Duplication entre Dollar et Franc:
-  - times à mettre en commun
---> Ajouter le concept de currency
+  --> times à mettre en commun
 Supprimer le test de multiplication du Franc
 */
 
 export abstract class Money {
-  protected _currency: string;
-
   constructor(
     protected _amount: number,
-    currency: string,
-  ) {
-    this._currency = currency;
-  }
+    protected _currency: string,
+  ) {}
 
   abstract times(multiplier: number): Money;
 
@@ -23,6 +18,10 @@ export abstract class Money {
     return (
       this._amount === other._amount && this.constructor === other.constructor
     );
+  }
+
+  currency() {
+    return this._currency;
   }
 
   static dollar(amount: number) {
@@ -38,18 +37,10 @@ class Dollar extends Money {
   times(multiplier: number): Money {
     return new Dollar(this._amount * multiplier, this._currency);
   }
-
-  currency() {
-    return this._currency;
-  }
 }
 
 class Franc extends Money {
   times(multiplier: number): Money {
     return new Franc(this._amount * multiplier, this._currency);
-  }
-
-  currency() {
-    return this._currency;
   }
 }
