@@ -16,6 +16,14 @@ export abstract class Money {
       this._amount === other._amount && this.constructor === other.constructor
     );
   }
+
+  static dollar(amount: number) {
+    return new Dollar(amount);
+  }
+
+  static franc(amount: number) {
+    return new Franc(amount);
+  }
 }
 
 export class Dollar extends Money {
