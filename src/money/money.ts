@@ -1,9 +1,6 @@
 /*
 $5 + 10CHF = $10 si le taux est de 2:1
-hashCode()
-Duplication entre Dollar et Franc:
-  --> times à mettre en commun
-Supprimer le test de multiplication du Franc
+$5 + $5 = $10
 */
 
 export class Money {
@@ -12,8 +9,12 @@ export class Money {
     protected _currency: string,
   ) {}
 
-  times(_multiplier: number): Money {
-    return new Money(0, "");
+  times(multiplier: number): Money {
+    return new Money(this._amount * multiplier, this._currency);
+  }
+
+  plus(addend: Money): Money {
+    return new Money(this._amount + addend._amount, this._currency);
   }
 
   equals(other: Money): boolean {
@@ -27,22 +28,10 @@ export class Money {
   }
 
   static dollar(amount: number) {
-    return new Dollar(amount, "USD");
+    return new Money(amount, "USD");
   }
 
   static franc(amount: number) {
-    return new Franc(amount, "CHF");
-  }
-}
-
-class Dollar extends Money {
-  times(multiplier: number): Money {
-    return new Dollar(this._amount * multiplier, this._currency);
-  }
-}
-
-class Franc extends Money {
-  times(multiplier: number): Money {
-    return new Franc(this._amount * multiplier, this._currency);
+    return new Money(amount, "CHF");
   }
 }
