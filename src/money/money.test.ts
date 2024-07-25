@@ -26,3 +26,7 @@ describe("For CHF", () => {
     expect(Money.dollar(1).currency()).toBe("USD");
   });
 });
+
+it("Money with USD should be equal dollar", () => {
+  expect(new Money(1, "USD").equals(Money.dollar(1))).toBe(true);
+});

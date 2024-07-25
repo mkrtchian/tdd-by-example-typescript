@@ -6,17 +6,19 @@ Duplication entre Dollar et Franc:
 Supprimer le test de multiplication du Franc
 */
 
-export abstract class Money {
+export class Money {
   constructor(
     protected _amount: number,
     protected _currency: string,
   ) {}
 
-  abstract times(multiplier: number): Money;
+  times(_multiplier: number): Money {
+    return new Money(0, "");
+  }
 
   equals(other: Money): boolean {
     return (
-      this._amount === other._amount && this.constructor === other.constructor
+      this._amount === other._amount && this.currency() === other.currency()
     );
   }
 
