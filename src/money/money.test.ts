@@ -58,3 +58,13 @@ it("should reduce using a defined rate", () => {
   const reduced = bank.reduce(Money.dollar(3), "CHF");
   expect(reduced.equals(Money.franc(3 / 1.18))).toBe(true);
 });
+
+it("should return rate 1 when input and output currency are the same", () => {
+  const bank = new Bank();
+  expect(bank.rate("USD", "USD")).toEqual(1);
+});
+
+it("should throw if rate doesn't exist", () => {
+  const bank = new Bank();
+  expect(() => bank.rate("CHF", "USD")).toThrow();
+});
