@@ -54,7 +54,7 @@ it("Bank.reduce returns the correct Money", () => {
 
 it("should reduce using a defined rate", () => {
   const bank = new Bank();
-  bank.addRate("CHF", "USD", 1.18);
+  bank.addRate("USD", "CHF", 1.18);
   const reduced = bank.reduce(Money.dollar(4), "CHF");
   expect(reduced.equals(Money.franc(4 / 1.18))).toBe(true);
 });
@@ -73,7 +73,7 @@ it("should add the different money on the output currency", () => {
   const moneyDollar = Money.dollar(5);
   const moneyFranc = Money.franc(10);
   const bank = new Bank();
-  bank.addRate("CHF", "USD", 0.5);
+  bank.addRate("CHF", "USD", 2);
 
   const result = bank.reduce(moneyDollar.plus(moneyFranc), "USD");
   expect(result.equals(Money.dollar(10))).toBe(true);
