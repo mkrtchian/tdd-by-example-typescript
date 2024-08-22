@@ -1,4 +1,4 @@
-import { Money, Bank, Sum } from "./money";
+import { Money, Bank, Sum, ConversionRateNotFoundError } from "./money";
 
 describe("For dollars", () => {
   it("should ensure equality", () => {
@@ -55,8 +55,8 @@ it("Bank.reduce returns the correct Money", () => {
 it("should reduce using a defined rate", () => {
   const bank = new Bank();
   bank.addRate("CHF", "USD", 1.18);
-  const reduced = bank.reduce(Money.dollar(3), "CHF");
-  expect(reduced.equals(Money.franc(3 / 1.18))).toBe(true);
+  const reduced = bank.reduce(Money.dollar(4), "CHF");
+  expect(reduced.equals(Money.franc(4 / 1.18))).toBe(true);
 });
 
 it("should return rate 1 when input and output currency are the same", () => {
@@ -66,5 +66,15 @@ it("should return rate 1 when input and output currency are the same", () => {
 
 it("should throw if rate doesn't exist", () => {
   const bank = new Bank();
-  expect(() => bank.rate("CHF", "USD")).toThrow();
+  expect(() => bank.rate("CHF", "USD")).toThrow(ConversionRateNotFoundError);
+});
+
+it("should add the different money on the output currency", () => {
+  const moneyDollar = Money.dollar(5);
+  const moneyFranc = Money.franc(10);
+  const bank = new Bank();
+  bank.addRate("CHF", "USD", 0.5);
+
+  const result = bank.reduce(moneyDollar.plus(moneyFranc), "USD");
+  expect(result.equals(Money.dollar(10))).toBe(true);
 });

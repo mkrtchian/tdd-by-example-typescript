@@ -1,8 +1,6 @@
 /*
 $5 + 10CHF = $10 si le taux est de 2:1
---> $5 + $5 = $10
 Retourner Money à partir de $5 + $5
---> Reduce(Bank, string)
 enhance currency type
 Let the Bank handle the conversion
 Add a class for conversion rates
@@ -15,8 +13,8 @@ interface Expression {
 
 export class Money implements Expression {
   constructor(
-    protected _amount: number,
-    protected _currency: string,
+    private _amount: number,
+    private _currency: string,
   ) {}
 
   get amount() {
@@ -42,7 +40,10 @@ export class Money implements Expression {
   }
 
   reduce(bank: Bank, currency: string) {
-    return new Money(3 / bank.rate(currency, this._currency), currency);
+    return new Money(
+      this._amount / bank.rate(this._currency, currency),
+      currency,
+    );
   }
 
   static dollar(amount: number) {
@@ -100,6 +101,7 @@ export class Bank {
 
   rate(inputCurrency: string, outputCurrency: string) {
     if (inputCurrency === outputCurrency) return 1;
+
     const conversionRate = this.conversionRates.get(
       new Pair(inputCurrency, outputCurrency).hash(),
     );
@@ -117,6 +119,8 @@ export class Sum implements Expression {
   ) {}
 
   reduce(bank: Bank, currency: string) {
-    return new Money(this.addend.amount + this.augend.amount, currency);
+    const addEndConverted = this.addend.reduce(bank, currency);
+    const augEndConverted = this.augend.reduce(bank, currency);
+    return new Money(addEndConverted.amount + augEndConverted.amount, currency);
   }
 }
