@@ -2,10 +2,15 @@
 $5 + 10CHF = $10 si le taux est de 2:1
 --> $5 + $5 = $10
 Retourner Money à partir de $5 + $5
+--> Reduce(Bank, string)
+enhance currency type
+Let the Bank handle the conversion
 */
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Expression {}
+interface Expression {
+  reduce: (bank: Bank, currency: string) => Money;
+}
 
 export class Money implements Expression {
   constructor(
@@ -35,6 +40,10 @@ export class Money implements Expression {
     return this._currency;
   }
 
+  reduce(bank: Bank, currency: string) {
+    return new Money(3 / bank.rate(this._currency, currency), currency);
+  }
+
   static dollar(amount: number) {
     return new Money(amount, "USD");
   }
@@ -46,8 +55,18 @@ export class Money implements Expression {
 
 export class Bank {
   reduce(source: Expression, currency: string) {
-    const sum = source as Sum;
-    return sum.reduce(currency);
+    return source.reduce(this, currency);
+  }
+
+  addRate(inputCurrency: string, outputCurrency: string, rate: number) {
+    return true;
+  }
+
+  rate(inputCurrency: string, outputCurrency: string) {
+    if (inputCurrency === outputCurrency) {
+      return 1;
+    }
+    return 1.18;
   }
 }
 
@@ -57,7 +76,7 @@ export class Sum implements Expression {
     public addend: Money,
   ) {}
 
-  reduce(currency: string) {
+  reduce(bank: Bank, currency: string) {
     return new Money(this.addend.amount + this.augend.amount, currency);
   }
 }

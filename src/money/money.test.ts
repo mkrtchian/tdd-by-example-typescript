@@ -45,3 +45,16 @@ it("Bank.reduce returns the correct sum", () => {
   const reduced = bank.reduce(sum, "USD");
   expect(reduced.equals(Money.dollar(7))).toBe(true);
 });
+
+it("Bank.reduce returns the correct Money", () => {
+  const bank = new Bank();
+  const reduced = bank.reduce(Money.dollar(3), "USD");
+  expect(reduced.equals(Money.dollar(3))).toBe(true);
+});
+
+it("should reduce using a defined rate", () => {
+  const bank = new Bank();
+  bank.addRate("CHF", "USD", 1.18);
+  const reduced = bank.reduce(Money.dollar(3), "CHF");
+  expect(reduced.equals(Money.franc(3 / 1.18))).toBe(true);
+});
