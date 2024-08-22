@@ -45,10 +45,9 @@ export class Money implements Expression {
 }
 
 export class Bank {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reduce(source: Expression, currency: string) {
     const sum = source as Sum;
-    return new Money(sum.addend.amount + sum.augend.amount, "USD");
+    return sum.reduce(currency);
   }
 }
 
@@ -57,4 +56,8 @@ export class Sum implements Expression {
     public augend: Money,
     public addend: Money,
   ) {}
+
+  reduce(currency: string) {
+    return new Money(this.addend.amount + this.augend.amount, currency);
+  }
 }
